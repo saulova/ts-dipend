@@ -1,0 +1,99 @@
+name: Bug Report 🐛
+description: Report a bug to help improve Dipend
+title: "[Bug]: "
+labels: ["Bug", "Triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        # Before You Start
+        Thank you for taking the time to report a bug. Please review the steps below before submitting your issue.
+  - type: markdown
+    attributes:
+      value: |
+        ## Preliminary Checks
+        - Confirm you are using the latest version of Dipend.
+        - Search existing [issues](https://github.com/saulova/ts-dipend/issues) to see if this bug has already been reported or addressed.
+        - Review the [documentation](https://dipend.sauloalvarenga.dev.br) to ensure the behavior isn't expected.
+  - type: markdown
+    attributes:
+      value: |
+        ## Minimal Reproduction Required
+        Please share a minimal, self-contained reproduction that shows the issue clearly.
+        The easier it is for us to understand and replicate, the faster it can be addressed.
+
+        :warning: Issues without a working reproduction might be closed without investigation.
+
+        ---
+  - type: input
+    id: dipend-version
+    attributes:
+      label: Dipend Version
+      description: Specify the version of Dipend you are using.
+      placeholder: e.g., 1.0.0
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction Steps
+      description: A detailed guide on how to reproduce the problem.
+      placeholder: |
+        Example:
+        1. Create a project with `npm init`
+        2. Install Dipend: `npm install dipend`
+        3. Set up a simple dependency injection example
+        4. Run the project
+        5. See the error message
+    validations:
+      required: true
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: What You Expected to Happen
+      description: Describe what you thought would happen.
+      placeholder: I expected the container to resolve the service correctly.
+    validations:
+      required: true
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: What Actually Happened
+      description: Describe the behavior you observed.
+      placeholder: The service was not resolved and an error was thrown.
+    validations:
+      required: true
+  - type: textarea
+    id: additional-info
+    attributes:
+      label: Additional Context
+      description: Include any other details or screenshots that might help us.
+    validations:
+      required: false
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment Info
+      description: |
+        Please paste the output of `npx envinfo --system --binaries --npmPackages`.
+        It will be formatted automatically.
+      placeholder: |
+        System:
+          OS: macOS 13.4
+          CPU: (10) arm64 Apple M2
+        Binaries:
+          Node: 20.3.0 - ~/.nvm/versions/node/v20.3.0/bin/node
+          npm: 9.6.7 - ~/.nvm/versions/node/v20.3.0/bin/npm
+        npmPackages:
+          dipend: 1.0.0 => 1.0.0
+      render: Shell
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: |
+        ---
+
+        ## Credits
+
+        This template was inspired by the awesome work of the [Jest team](https://github.com/facebook/jest) and adapted for Dipend. Thanks to all open-source contributors! 💙

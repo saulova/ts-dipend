@@ -1,0 +1,10 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "importHelpers": true
+  },
+  "exclude": ["vitest.config.ts", "**/*.test.ts", "**/dist/*"]
+}

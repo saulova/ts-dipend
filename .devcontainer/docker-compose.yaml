@@ -1,0 +1,14 @@
+services:
+  ts-dipend-devcontainer:
+    build: 
+      context: .
+    volumes:
+      - ../:/workspaces/ts-dipend:cached
+    networks:
+      - ts-dipend-devcontainer
+    user: vscode
+    
+
+networks:
+  ts-dipend-devcontainer:
+    driver: bridge

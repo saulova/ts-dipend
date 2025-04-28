@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "incremental": true,
+    "target": "ES2023",
+    "lib": ["es2023", "esnext.decorators", "dom"],
+    "module": "commonjs",
+    "declaration": true,
+    "sourceMap": true,
+    "composite": true,
+    "strict": true,
+    "importHelpers": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  }
+}

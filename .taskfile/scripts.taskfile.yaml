@@ -1,0 +1,26 @@
+version: "3"
+
+vars:
+  PACKAGE: '{{default "MISSING_PACKAGE" .PACKAGE}}'
+
+tasks:
+  prepare-package-json:
+    cmds:
+      - node ./scripts/src/prepare-package-json.js ./packages/{{.PACKAGE}}/package.json ./packages/{{.PACKAGE}}/dist/package.json
+
+  normalize-version:
+    cmds:
+      - node ./scripts/src/normalize-version ./package.json ./packages/{{.PACKAGE}}/dist/package.json
+
+  add-license-header:
+    cmds:
+      - cmd: node ./scripts/src/add-license-header.js ./packages/{{.PACKAGE}}
+
+  copy-dist-files:
+    cmds:
+      - for: ["README.md", "LICENSE", "THIRD_PARTY_NOTICE.md"]
+        cmd: cp ./{{ .ITEM }} ./packages/{{.PACKAGE}}/dist/{{ .ITEM }}
+
+  create-npmrc:
+    cmds:
+      - cmd: node ./scripts/src/create-npmrc.js ./packages/{{.PACKAGE}}/dist/
