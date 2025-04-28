@@ -1,9 +1,5 @@
-# Pull Request 🚀
-
-Thank you for contributing to Dipend!  
-Please complete the following checklist to help us review your PR faster.
-
----
+<!-- Thank you for contributing to Dipend!   -->
+<!-- Please complete the following checklist to help us review your PR faster. -->
 
 ## Description
 

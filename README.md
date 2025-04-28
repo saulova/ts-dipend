@@ -102,7 +102,7 @@ console.log(result);
 
 While many dependency injection libraries exist, **Dipend** is **the only one** (as of now) that fully supports using **interfaces** as references for dependency resolution without needing extra boilerplate or manual token management.
 
-This means you can register and retrieve implementations by their interfaces directly, **preserving clean** principles while keeping your code strongly typed and maintainable.
+This means you can register and retrieve implementations by their interfaces directly, preserving **clean principles** while keeping your code strongly typed and maintainable.
 
 ---
 
@@ -143,5 +143,5 @@ See [LICENSE][license-url] for complete license information.
 [license-shield]: https://img.shields.io/github/license/saulova/ts-dipend?style=flat-square
 [license-url]: https://github.com/saulova/ts-dipend/blob/main/LICENSE
 [contributing-guidelines-url]: https://github.com/saulova/ts-dipend/blob/main/CONTRIBUTING.md
-[cla-url]: https://github.com/saulova/ts-dipend/blob/main/CONTRIBUTOR_LICENSE_AGREEMENT.md
+[cla-url]: https://github.com/saulova/ts-dipend/blob/main/CLA.md
 [ts-patch-url]: https://github.com/nonara/ts-patch
