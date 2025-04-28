@@ -11,7 +11,7 @@ This document outlines the guidelines and process for contributing.
 
 - Make sure to read through the [README](https://github.com/saulova/ts-dipend/blob/main/README.md) and [documentation](https://dipend.sauloalvarenga.dev.br) to understand the project.
 - Please check if there is an [open issue](https://github.com/saulova/ts-dipend/issues) for your intended contribution before opening a new one.
-- If you're fixing a bug or suggesting a new feature, open an issue first to discuss your idea unless it's a small fix.
+- If you're fixing a bug or suggesting a new feature, open an issue first to discuss your idea.
 
 ---
 
@@ -89,5 +89,5 @@ Inside the DevContainer terminal:
 
 ---
 
-Thank you again for contributing! 🎉
+Thank you again for contributing! 🎉  
 We are excited to have you as part of the Dipend community.
