@@ -1,0 +1,83 @@
+name: Question / Support Request ❓
+description: Ask a question or request support regarding Dipend
+title: "[Question]: "
+labels: ["Question", "Triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        # Need Help?
+        We're happy to help! Please make sure your question is clear and complete.
+  - type: markdown
+    attributes:
+      value: |
+        ## Before Asking
+        - Search the [documentation](https://dipend.sauloalvarenga.dev.br) for possible answers.
+        - Check [existing issues](https://github.com/saulova/ts-dipend/issues) to avoid duplicates.
+        - Remember that GitHub Issues are for development-related questions. For general discussions, consider opening a topic in the community forum (coming soon).
+  - type: input
+    id: question-summary
+    attributes:
+      label: Summary
+      description: A short, one-line summary of your question or issue.
+      placeholder: 'Example: "How can I inject a singleton service across multiple modules?"'
+    validations:
+      required: true
+  - type: textarea
+    id: full-question
+    attributes:
+      label: Full Question / Support Request
+      description: Provide a detailed description of your question or the support you need.
+      placeholder: |
+        Example:
+        I have a setup with multiple modules, and I want a singleton service to be available across all of them. What's the best way to do this in Dipend?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Code Example (if applicable)
+      description: If your question involves code, please share a minimal snippet to illustrate it.
+      placeholder: |
+        Example:
+        ```ts
+        const dependencyContainer = new DependencyContainer();
+        dependencyContainer.addSingleton<ILogger, LoggerService>();
+        ```
+    validations:
+      required: false
+  - type: textarea
+    id: what-tried
+    attributes:
+      label: What You've Tried
+      description: Tell us what you have already tried or researched.
+      placeholder: I tried reading the "Scopes and Lifetimes" section but still have doubts.
+    validations:
+      required: false
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment Info (Optional)
+      description: |
+        Please paste the output of `npx envinfo --system --binaries --npmPackages`.
+        It will be formatted automatically.
+      placeholder: |
+        System:
+          OS: macOS 13.4
+          CPU: (10) arm64 Apple M2
+        Binaries:
+          Node: 20.3.0 - ~/.nvm/versions/node/v20.3.0/bin/node
+          npm: 9.6.7 - ~/.nvm/versions/node/v20.3.0/bin/npm
+        npmPackages:
+          dipend: 1.0.0 => 1.0.0
+      render: Shell
+    validations:
+      required: false
+  - type: markdown
+    attributes:
+      value: |
+        ---
+
+        ## Thank You!
+
+        Thank you for reaching out! We'll do our best to assist you 🙌

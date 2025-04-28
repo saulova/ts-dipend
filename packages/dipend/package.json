@@ -1,0 +1,55 @@
+{
+  "name": "dipend",
+  "private": true,
+  "version": "0.0.0",
+  "author": "Saulo V. Alvarenga",
+  "description": "This library implements a dependency injection (DI) system in JavaScript/TypeScript, making it easier to manage dependencies in modular applications.",
+  "license": "Apache-2.0",
+  "homepage": "https://dipend.sauloalvarenga.dev.br",
+  "bugs": "https://github.com/saulova/ts-dipend/issues/",
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/saulova"
+  },
+  "keywords": [
+    "dependency-injection",
+    "di",
+    "typescript",
+    "ioc",
+    "injection",
+    "dependency-injection-container",
+    "container",
+    "typescript-di",
+    "typescript-ioc",
+    "interface-based-injection",
+    "dependency-inversion",
+    "solid-principles",
+    "inversion-of-control",
+    "clean-architecture",
+    "dependency-management",
+    "dipend",
+    "singleton",
+    "transient",
+    "typescript-library",
+    "typescript-dependency-injection"
+  ],
+  "main": "./dist/index.js",
+  "bin": {
+    "dipend": "./dist/bin/dipend"
+  },
+  "exports": {
+    ".": "./dist/index.js",
+    "./tsc-plugin": "./dist/tsc-plugin/index.js"
+  },
+  "scripts": {
+    "build": "tsc --build tsconfig.build.json && cp -r ./src/bin ./dist/bin",
+    "test": "vitest --reporter verbose --watch false",
+    "test-ui": "vitest --ui",
+    "lint": "eslint .",
+    "clear": "rm -rf coverage && rm -rf dist && rm -f tsconfig.build.tsbuildinfo"
+  },
+  "dependencies": {
+    "ts-patch": "^3.3.0",
+    "yargs": "^17.7.2"
+  }
+}

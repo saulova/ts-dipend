@@ -1,0 +1,77 @@
+name: Feature Request ✨
+description: Suggest an idea or improvement for Dipend
+title: "[Feature]: "
+labels: ["Enhancement", "Triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        # Suggest a New Feature or Improvement
+        Thank you for helping make Dipend better! Please complete the sections below to help us understand your request.
+  - type: markdown
+    attributes:
+      value: |
+        ## Before Submitting
+        - Check the [open issues](https://github.com/saulova/ts-dipend/issues) to make sure this feature has not already been requested.
+        - Confirm the feature aligns with Dipend's scope and goals by reviewing the [documentation](https://dipend.sauloalvarenga.dev.br).
+  - type: input
+    id: feature-title
+    attributes:
+      label: Feature Name
+      description: A short and descriptive title for your feature request.
+      placeholder: 'Example: "Support for Scoped Lifetimes"'
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Feature Description
+      description: Describe the feature you would like to see and why it is useful.
+      placeholder: |
+        Example:
+        I'd like Dipend to support scoped lifetimes for services, so instances can be managed per scope rather than globally.
+    validations:
+      required: true
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation
+      description: Explain why this feature is important. What problem does it solve? What benefits does it bring?
+      placeholder: |
+        Example:
+        In larger applications, global singletons are not always ideal. Scoped lifetimes would enable better resource management and isolation between requests.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Possible Alternatives
+      description: If you considered other solutions or workarounds, please share them.
+      placeholder: |
+        Example:
+        I could manually manage instances per scope outside of Dipend, but it would be error-prone and duplicate logic.
+    validations:
+      required: false
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Add any other context or sketches (diagrams, examples) that could help explain your idea.
+      placeholder: |
+        Example:
+        ```ts
+        const dependencyContainer = new DependencyContainer();
+        const scope = dependencyContainer.createScope();
+        scope.addSingleton<MyService>();
+        const myService = scope.getDependency<MyService>();
+        ```
+    validations:
+      required: false
+  - type: markdown
+    attributes:
+      value: |
+        ---
+
+        ## Thanks!
+
+        Thank you for helping improve Dipend! We appreciate your feedback and ideas 💡

@@ -1,0 +1,29 @@
+version: "3"
+
+includes:
+  dipend:
+    taskfile: ./.taskfile/packages.taskfile.yaml
+    vars:
+      PACKAGE: dipend
+  dipend-graph:
+    taskfile: ./.taskfile/packages.taskfile.yaml
+    vars:
+      PACKAGE: dipend-graph
+    excludes: [lint, test, test-ui]
+
+tasks:
+  build-all:
+    desc: "Build all packages."
+    cmds:
+      - task: dipend:build
+      - task: dipend-graph:build
+
+  lint-all:
+    desc: "Run all lint checks to ensure code quality."
+    cmds:
+      - task: dipend:lint
+
+  test-all:
+    desc: "Run all tests to ensure code quality."
+    cmds:
+      - task: dipend:test

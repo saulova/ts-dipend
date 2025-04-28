@@ -1,0 +1,41 @@
+version: "3"
+
+vars:
+  PACKAGE: '{{ default "MISSING_PACKAGE" .PACKAGE }}'
+
+includes:
+  scripts:
+    taskfile: ./scripts.taskfile.yaml
+    # By default, included Taskfile's tasks are run in the same directory of this yaml (".taskfile/").
+    # But you can force its to run in another directory by using dir.
+    dir: ../
+    vars:
+      PACKAGE: "{{.PACKAGE}}"
+    internal: true
+
+tasks:
+  build:
+    desc: "Build all {{.PACKAGE}} components."
+    cmds:
+      - npm run clear -w {{.PACKAGE}}
+      - npm run build -w {{.PACKAGE}}
+      - task: scripts:prepare-package-json
+      - task: scripts:normalize-version
+      - task: scripts:add-license-header
+      - task: scripts:copy-dist-files
+      - task: scripts:create-npmrc
+
+  lint:
+    desc: "Run {{.PACKAGE}} lint checks to ensure code quality."
+    cmds:
+      - npm run lint -w {{.PACKAGE}}
+
+  test:
+    desc: "Run {{.PACKAGE}} tests to ensure code quality."
+    cmds:
+      - npm run test -w {{.PACKAGE}}
+
+  test-ui:
+    desc: "Start {{.PACKAGE}} tests and launch the Vitest UI."
+    cmds:
+      - npm run test-ui -w {{.PACKAGE}}

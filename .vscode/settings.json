@@ -1,0 +1,16 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.expand": false,
+  "explorer.fileNesting.patterns": {
+    "package.json": ".eslint*, .prettier*, package-lock.json, eslint*, tsconfig*, vitest*, rollup*, Taskfile.yaml, .gitignore",
+    "README.md": "CLA.md, CODE_OF_CONDUCT.md, CONTRIBUTING.md, LICENSE, THIRD_PARTY_NOTICE.md"
+  },
+  "yaml.schemas": {
+    "https://taskfile.dev/schema.json": "*.taskfile.yaml"
+  }
+}
