@@ -51,6 +51,7 @@
   },
   "dependencies": {
     "ts-patch": "^3.3.0",
-    "yargs": "^17.7.2"
+    "yargs": "^17.7.2",
+    "jsonc-parser": "^3.3.1"
   }
 }

@@ -2,22 +2,20 @@ import http, { Server } from "http";
 import process from "process";
 
 import { GraphDataHandler, RequestHandler } from "./handlers";
-import { IDependencyContainerGraph } from "./interfaces";
 
 export class DipendGraphServer {
   private graphDataHandler: GraphDataHandler;
 
   private server: Server;
 
-  constructor(
-    dependencyContainer: IDependencyContainerGraph,
-    private host?: string,
-    private port?: number,
-  ) {
+  private host: string;
+  private port: number;
+
+  constructor(dependencyContainer: any, config?: { host?: string; port?: number }) {
     const { envHost, envPort } = this.getEnvs();
 
-    this.host = host || envHost;
-    this.port = port || envPort;
+    this.host = config?.host || envHost || "127.0.0.1";
+    this.port = config?.port || envPort || 4321;
 
     this.graphDataHandler = new GraphDataHandler(dependencyContainer);
 
@@ -32,8 +30,11 @@ export class DipendGraphServer {
   }
 
   private getEnvs() {
-    const envHost = process.env.SERVER_HOST || "127.0.0.1";
-    const envPort = process.env.SERVER_PORT ? parseInt(process.env.SERVER_PORT, 10) : 4321;
+    const envHost = process.env.DIPEND_GRAPH_SERVER_HOST;
+    const envPort = process.env.DIPEND_GRAPH_SERVER_PORT
+      ? parseInt(process.env.DIPEND_GRAPH_SERVER_PORT, 10)
+      : undefined;
+
     return { envHost, envPort };
   }
 
