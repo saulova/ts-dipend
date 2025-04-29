@@ -20,6 +20,7 @@
 ## Features
 
 - **Interface-based Dependency Injection**: Use TypeScript interfaces as references for dependencies, ensuring strong type safety.
+- **Mapped Dependencies**: Register and resolve multiple implementations of the same interface by key. This allows you to map different behaviors or strategies to specific identifiers and retrieve them dynamically at runtime based on context.
 - **Singleton and Transient Support**: Easily configure lifetime scopes for your services.
 - **Minimal Setup**: Get started quickly with a simple CLI.
 - **Easy to Extend**: Open and flexible architecture.
@@ -96,15 +97,16 @@ const result = greeter.greet("World");
 console.log(result);
 ```
 
----
+## More Examples
+
+Looking for more use cases or advanced configurations?  
+Check out the [full documentation][documentation-url].
 
 ## Why Dipend?
 
 While many dependency injection libraries exist, **Dipend** is **the only one** (as of now) that fully supports using **interfaces** as references for dependency resolution without needing extra boilerplate or manual token management.
 
 This means you can register and retrieve implementations by their interfaces directly, preserving **clean principles** while keeping your code strongly typed and maintainable.
-
----
 
 <!-- CONTRIBUTING -->
 
@@ -144,4 +146,5 @@ See [LICENSE][license-url] for complete license information.
 [license-url]: https://github.com/saulova/ts-dipend/blob/main/LICENSE
 [contributing-guidelines-url]: https://github.com/saulova/ts-dipend/blob/main/CONTRIBUTING.md
 [cla-url]: https://github.com/saulova/ts-dipend/blob/main/CLA.md
+[documentation-url]: https://dipend.sauloalvarenga.dev.br
 [ts-patch-url]: https://github.com/nonara/ts-patch
