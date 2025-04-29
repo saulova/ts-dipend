@@ -1,7 +1,7 @@
 {
   "name": "dipend",
   "private": true,
-  "version": "1.0.1",
+  "version": "1.0.0-first",
   "author": "Saulo Virissimo Alvarenga",
   "license": "Apache-2.0",
   "type": "module",
