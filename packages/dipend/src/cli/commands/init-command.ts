@@ -2,6 +2,7 @@ import { ArgumentsCamelCase, BuilderCallback } from "yargs";
 import fs from "fs";
 import path from "path";
 import { ICLICommand } from "../interfaces";
+import { applyEdits, modify, parse } from "jsonc-parser";
 
 export type TInitCommandArguments = {
   tsConfig: string;
@@ -58,17 +59,17 @@ export class InitCommand implements ICLICommand<TInitCommandArguments> {
   };
 
   private readTsConfig(tsConfigPath: string): TTsConfigFile {
-    let tsConfig: TTsConfigFile = {};
-
-    if (fs.existsSync(tsConfigPath)) {
-      tsConfig = JSON.parse(fs.readFileSync(tsConfigPath, "utf-8"));
-    }
-
-    if (Object.keys(tsConfig).length === 0) {
+    if (!fs.existsSync(tsConfigPath)) {
       throw new Error("Missing tsconfig.json");
     }
 
-    return tsConfig;
+    const content = fs.readFileSync(tsConfigPath, "utf-8");
+    const parsed = parse(content);
+    if (!parsed || typeof parsed !== "object") {
+      throw new Error("Invalid tsconfig.json format");
+    }
+
+    return parsed;
   }
 
   private readPackageJson(packageJsonPath: string): TPackageJson {
@@ -230,22 +231,56 @@ export class InitCommand implements ICLICommand<TInitCommandArguments> {
     return newPackageJson;
   }
 
+  private applyChangesAndKeepComments(originalTsConfigAsString: string, mergedTsConfig: TTsConfigFile) {
+    const formattingOptions = { insertSpaces: true, tabSize: 2 };
+    let result = originalTsConfigAsString;
+
+    if (mergedTsConfig["ts-node"]?.compiler) {
+      const edit = modify(result, ["ts-node", "compiler"], mergedTsConfig["ts-node"].compiler, {
+        formattingOptions,
+      });
+
+      result = applyEdits(result, edit);
+    }
+
+    if (mergedTsConfig.compilerOptions?.lib) {
+      const edit = modify(result, ["compilerOptions", "lib"], mergedTsConfig.compilerOptions.lib, {
+        formattingOptions,
+      });
+
+      result = applyEdits(result, edit);
+    }
+
+    if (mergedTsConfig.compilerOptions?.plugins) {
+      const edit = modify(result, ["compilerOptions", "plugins"], mergedTsConfig.compilerOptions.plugins, {
+        formattingOptions,
+      });
+
+      result = applyEdits(result, edit);
+    }
+
+    return result;
+  }
+
   public handler = async (args: ArgumentsCamelCase<TInitCommandArguments>): Promise<void> => {
     try {
       const tsConfigPath = path.resolve(args.tsConfig);
       const packageJsonPath = path.resolve(args.packageJson);
 
       const tsConfig = this.readTsConfig(tsConfigPath);
+      const originalTsConfigAsString = fs.readFileSync(tsConfigPath, "utf-8");
       const packageJson = this.readPackageJson(packageJsonPath);
 
-      const mergedConfig = this.mergeTsConfig(tsConfig);
+      const mergedTsConfig = this.mergeTsConfig(tsConfig);
       console.log(`Dipend configurations successfully added to tsconfig.json`);
       const mergedPackageJson = this.mergePackageJson(packageJson);
       console.log(`Dipend configurations successfully added to package.json`);
 
       if (this.recommendInstall) console.log("Dipend: Please, run npm install again");
 
-      fs.writeFileSync(tsConfigPath, JSON.stringify(mergedConfig, null, 2));
+      const newTsConfig = this.applyChangesAndKeepComments(originalTsConfigAsString, mergedTsConfig);
+
+      fs.writeFileSync(tsConfigPath, newTsConfig, "utf-8");
       fs.writeFileSync(packageJsonPath, JSON.stringify(mergedPackageJson, null, 2));
     } catch (error) {
       console.error("Error updating tsconfig.json or package.json:", error);
