@@ -97,16 +97,26 @@ const result = greeter.greet("World");
 console.log(result);
 ```
 
+<p align="right"><a href="#top">(back to top)</a></p>
+
+<!-- MORE EXEMPLES -->
+
 ## More Examples
 
 Looking for more use cases or advanced configurations?  
 Check out the [full documentation][documentation-url].
+
+<p align="right"><a href="#top">(back to top)</a></p>
+
+<!-- WHY DIPEND -->
 
 ## Why Dipend?
 
 While many dependency injection libraries exist, **Dipend** is **the only one** (as of now) that fully supports using **interfaces** as references for dependency resolution without needing extra boilerplate or manual token management.
 
 This means you can register and retrieve implementations by their interfaces directly, preserving **clean principles** while keeping your code strongly typed and maintainable.
+
+<p align="right"><a href="#top">(back to top)</a></p>
 
 <!-- CONTRIBUTING -->
 
