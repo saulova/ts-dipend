@@ -23,12 +23,12 @@ jobs:
       - name: Build all packages
         run: task build-all
       - name: Publish dipend
-        run: npm publish --provenance --access public --tag first
+        run: npm publish --provenance --access public --tag latest
         working-directory: ./packages/dipend/dist
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Publish dipend-graph
-        run: npm publish --provenance --access public --tag first
+        run: npm publish --provenance --access public --tag latest
         working-directory: ./packages/dipend-graph/dist
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
