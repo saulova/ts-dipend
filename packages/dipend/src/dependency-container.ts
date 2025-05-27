@@ -113,7 +113,7 @@ export class DependencyContainer {
    * Builds all singleton dependencies.
    * @returns {DependencyContainer} The current instance of the container.
    */
-  public buildSingletons() {
+  public buildSingletons(): DependencyContainer {
     this.exceptionHandlerWrapper(() => this.resolveSingletonsCommandHandler.handle());
 
     this.isContainerBuilt = true;

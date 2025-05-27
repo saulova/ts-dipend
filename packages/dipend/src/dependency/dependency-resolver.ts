@@ -37,10 +37,6 @@ export class DependencyResolver {
     });
   }
 
-  private hasResolvedInstance(dependencyRegistry: DependencyRegistry) {
-    return dependencyRegistry.implementationDetails.instance !== undefined;
-  }
-
   private resolvedInstance(dependencyRegistry: DependencyRegistry) {
     return dependencyRegistry.implementationDetails.instance;
   }
@@ -48,8 +44,10 @@ export class DependencyResolver {
   public resolve(dependencyId: TDependencyId): unknown {
     const dependencyRegistry = this.dependencyStore.getDependency(dependencyId);
 
-    if (this.hasResolvedInstance(dependencyRegistry)) {
-      return this.resolvedInstance(dependencyRegistry);
+    const resolvedInstance = this.resolvedInstance(dependencyRegistry);
+
+    if (resolvedInstance !== undefined) {
+      return resolvedInstance;
     }
 
     const classConstructorDependenciesIds = dependencyRegistry.implementationDetails.classConstructorDependenciesIds;
